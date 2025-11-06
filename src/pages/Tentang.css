@@ -1,0 +1,124 @@
+/* src/pages/Tentang.css (VERSI FINAL - PASTE INI) */
+
+.tentang-page-wrapper {
+  position: relative; /* PENTING: Biar tombolnya ngukur dari sini */
+  min-height: 80vh; 
+}
+
+/* STYLE BUAT TOMBOL MASUK DI HEADER */
+.tentang-login-button-header {
+  position: absolute;
+  top: -3.5rem; /* Atur posisi Y ke atas (sesuai Figma) */
+  right: 0;   /* Atur posisi X ke kanan */
+  background-color: var(--color-primary); /* WARNA MERAH */
+  color: white; /* TEKS PUTIH */
+  border: none;
+  border-radius: 8px;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  z-index: 10; 
+}
+.tentang-login-button-header:hover {
+  opacity: 0.9;
+}
+
+/* KONTEN UTAMA */
+.tentang-content {
+  display: flex;
+  gap: 2rem;
+  margin-top: 2rem; /* Kasih jarak dari atas */
+}
+
+.tentang-main {
+  flex: 2; /* Bikin bagian kiri lebih besar */
+}
+
+.tentang-main h2 {
+  font-size: 2.5rem;
+  margin-top: 0;
+  color: var(--color-primary);
+}
+
+.tentang-main ul {
+  list-style: none;
+  padding-left: 0;
+}
+.tentang-main li {
+  margin-bottom: 0.5rem;
+}
+
+.tentang-image {
+  width: 100%;
+  margin: 2rem 0;
+}
+.tentang-image img {
+  width: 100%;
+  border-radius: 8px;
+}
+.image-caption {
+  text-align: center;
+  font-style: italic;
+  font-size: 0.9rem;
+  color: #777;
+}
+
+.tentang-socials a {
+  margin-right: 1rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+
+.tentang-sidebar-right {
+  flex: 1; /* Bagian kanan lebih kecil */
+}
+
+.contact-form-card {
+  background: var(--color-card-alt); /* Pink muda */
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+}
+
+.contact-form-card h3 {
+  margin-top: 0;
+}
+
+.contact-form-card label {
+  display: block;
+  font-weight: 700;
+  font-size: 0.9rem;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.contact-form-card input,
+.contact-form-card textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-sizing: border-box; /* Biar padding gak ngerusak width */
+}
+
+.submit-button {
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.form-reply-note {
+  font-size: 0.8rem;
+  text-align: center;
+  margin-top: 1rem;
+  color: #555;
+}

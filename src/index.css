@@ -1,0 +1,38 @@
+/* src/index.css */
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Lato:wght@400;700&display=swap');
+
+:root {
+  /* Fonts */
+  --font-serif: 'Merriweather', serif; /* Buat Judul (DiskuShare, 404) */
+  --font-sans: 'Lato', sans-serif;     /* Buat teks biasa */
+
+  /* Colors from Figma */
+  --color-bg: #FBF8F1;        /* Beige muda (background) */
+  --color-card: #FFFFFF;      /* Putih (card/form) */
+  --color-card-alt: #FBEAEB;  /* Pink muda (card/sidebar kanan) */
+  --color-primary: #A12D2D;    /* Merah marun (button, sidebar) */
+  --color-text: #333333;       /* Hitam/gelap (teks) */
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-sans);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+}
+
+button {
+  cursor: pointer;
+  font-family: var(--font-sans);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}

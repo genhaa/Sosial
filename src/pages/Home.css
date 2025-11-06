@@ -1,0 +1,123 @@
+/* src/pages/Home.css */
+.home-layout {
+  display: flex;
+  gap: 2rem;
+}
+.home-feed {
+  flex: 2; /* 2/3 layar */
+}
+.home-sidebar-right {
+  flex: 1; /* 1/3 layar */
+}
+
+/* Form Bikin Post */
+.create-post-form {
+  background: var(--color-card);
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid #eee;
+  margin-bottom: 2rem;
+}
+.post-input-wrapper {
+  display: flex;
+  gap: 1rem;
+}
+.post-avatar-input {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: #eee;
+}
+.create-post-form textarea {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-family: var(--font-sans);
+  font-size: 1.2rem;
+  resize: none;
+  height: 80px;
+}
+.create-post-form textarea:focus {
+  outline: none;
+}
+.kirim-button {
+  display: block;
+  margin-left: auto; /* Taruh di kanan */
+  background: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 1.2rem;
+  font-weight: 700;
+}
+
+/* Card Postingan */
+.feed-title {
+  font-family: var(--font-serif);
+  border-bottom: 2px solid #eee;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+.post-card {
+  display: flex;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: var(--color-card);
+  border: 1px solid #eee;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+}
+.post-avatar {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: #fbeaebeb; /* Pink muda */
+}
+.post-header {
+  margin-bottom: 0.5rem;
+}
+.post-header .username, .post-header .time {
+  color: #777;
+  font-size: 0.9rem;
+}
+.post-actions {
+  margin-top: 1rem;
+  display: flex;
+  gap: 1.5rem;
+  color: #555;
+  font-size: 0.9rem;
+}
+
+/* Sidebar Kanan */
+.search-bar {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 20px;
+  border: 1px solid #ddd;
+  box-sizing: border-box; /* Biar gak overflow */
+  margin-bottom: 1.5rem;
+}
+.kategori-card {
+  background: var(--color-card-alt); /* Pink muda */
+  padding: 1.5rem;
+  border-radius: 12px;
+}
+.kategori-card h4 {
+  margin-top: 0;
+  font-family: var(--font-serif);
+}
+.kategori-list {
+  list-style: none;
+  padding: 0;
+}
+.kategori-list li {
+  background: #fdfdfd;
+  padding: 0.75rem;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+.kategori-list li a {
+  text-decoration: none;
+  color: var(--color-text);
+}

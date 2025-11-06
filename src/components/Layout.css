@@ -1,0 +1,10 @@
+/* src/components/Layout.css */
+.app-layout {
+  display: flex;
+}
+.content {
+  flex-grow: 1; /* Biar ngisi sisa layar */
+  padding: 2.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
