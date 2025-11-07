@@ -1,19 +1,3 @@
-<<<<<<< HEAD
-// src/main.jsx
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import { BrowserRouter } from 'react-router-dom' // <-- IMPORT INI
-import App from './App.jsx'
-import './index.css' // Pastiin CSS global ke-import
-
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <BrowserRouter> {/* <-- TAMBAH INI */}
-      <App />
-    </BrowserRouter> {/* <-- TAMBAH INI */}
-  </React.StrictMode>,
-)
-=======
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App.jsx';
@@ -32,4 +16,3 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     </ThemeProvider>
   </React.StrictMode>
 );
->>>>>>> 1baf64adddb1a2e49e52887d95fbda9cd00bf0d8

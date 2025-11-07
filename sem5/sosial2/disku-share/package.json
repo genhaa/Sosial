@@ -1,9 +1,5 @@
 {
-<<<<<<< HEAD
-  "name": "diskushare",
-=======
   "name": "disku-share",
->>>>>>> 1baf64adddb1a2e49e52887d95fbda9cd00bf0d8
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -14,18 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
-<<<<<<< HEAD
-    "@supabase/supabase-js": "^2.79.0",
-    "react": "^19.1.1",
-    "react-dom": "^19.1.1",
-    "react-router-dom": "^7.9.5"
-=======
     "@supabase/supabase-js": "^2.80.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-router-dom": "^7.9.5",
     "styled-components": "^6.1.19"
->>>>>>> 1baf64adddb1a2e49e52887d95fbda9cd00bf0d8
   },
   "devDependencies": {
     "@eslint/js": "^9.36.0",
