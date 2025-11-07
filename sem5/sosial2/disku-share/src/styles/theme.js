@@ -7,5 +7,4 @@ export const theme = {
     textPrimary: '#333333',
   },
   borderRadius: '8px',
-  // ...etc
 };
