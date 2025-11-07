@@ -74,10 +74,6 @@ export async function getUserProfile(userId) {
   return profile;
 }
 
-/**
- * Meng-upload DAN mengatur avatar profil baru dalam satu langkah.
- * @param {File} file - File gambar yang didapat dari input <input type="file">
- */
 export async function uploadAvatar(file) {
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) {
@@ -118,21 +114,17 @@ export async function uploadAvatar(file) {
   }
 
   alert("Foto profil berhasil diperbarui!");
-  return newAvatarUrl; // Kembalikan URL jika frontend membutuhkannya
+  return newAvatarUrl;
 }
 
-/**
- * Memperbarui data profil pengguna (bio atau avatar_url)
- * @param {object} profileData - Contoh: { bio: "Halo" } atau { avatar_url: "http://..." }
- */
 export async function updateProfile(profileData) {
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return;
 
   const { error } = await supabase
     .from("users")
-    .update(profileData) // profileData adalah objek, misal: { bio, avatar_url }
-    .eq("id", user.id); // RLS juga akan memverifikasi ini
+    .update(profileData) 
+    .eq("id", user.id); 
 
   if (error) {
     console.error("Gagal update profil:", error);
@@ -142,10 +134,6 @@ export async function updateProfile(profileData) {
   }
 }
 
-/**
- * Meng-upload DAN mengatur banner profil baru dalam satu langkah.
- * @param {File} file - File gambar yang didapat dari input <input type="file">
- */
 export async function uploadBanner(file) {
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) {
@@ -189,9 +177,6 @@ export async function uploadBanner(file) {
   return newBannerUrl;
 }
 
-/**
- * Melakukan logout pengguna yang sedang login.
- */
 export async function logoutUser() {
   const { error } = await supabase.auth.signOut();
 
@@ -199,17 +184,10 @@ export async function logoutUser() {
     console.error("Gagal logout:", error.message);
     alert("Gagal logout, silakan coba lagi.");
   } else {
-    // Tim frontend Anda akan menangani ini
-    // dengan memindahkan pengguna ke halaman login.
     alert("Anda berhasil keluar!");
-    // window.location.href = "/login.html"; // (Contoh untuk frontend)
   }
 }
 
-/**
- * Memperbarui kata sandi pengguna yang sedang login.
- * @param {string} newPassword - Kata sandi baru yang akan diatur.
- */
 export async function updateUserPassword(newPassword) {
   const { data, error } = await supabase.auth.updateUser({
     password: newPassword
@@ -223,14 +201,8 @@ export async function updateUserPassword(newPassword) {
   }
 }
 
-/**
- * Mengirim email "Lupa Password" ke pengguna.
- * @param {string} email - Email dari pengguna yang lupa password.
- */
 export async function sendPasswordResetEmail(email) {
-  // Ini adalah URL ke HALAMAN FRONTEND BARU yang harus dibuat oleh tim Anda.
-  // Ini adalah halaman tempat pengguna akan memasukkan password baru mereka.
-  const resetURL = 'http://localhost:3000/update-password.html'; // <-- Ganti dengan URL frontend Anda
+  const resetURL = 'http://localhost:3000/update-password.html'; 
 
   const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
     redirectTo: resetURL,
