@@ -1,13 +1,12 @@
 // src/components/common/TrendingBox.jsx
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { getTrendingTags } from '../../services/categories'; //
+import { getTrendingTags } from '../../services/categories'; 
 import { Link } from 'react-router-dom';
 
-// --- STYLING (DIROMBAK TOTAL) ---
+// --- STYLING ---
 
 const TrendWrapper = styled.div`
-  /* Gradasi udah bener */
   background: linear-gradient(#FFF3E0, #F9DDDD);
   border-radius: ${({ theme }) => theme.borderRadius};
   padding: 1.5rem;
@@ -19,12 +18,13 @@ const Title = styled.h3`
   color: ${({ theme }) => theme.colors.textPrimary};
 `;
 
-// Bikin Grid Container
+// --- ⬇️ INI ADALAH PERBAIKANNYA ⬇️ ---
 const TrendGrid = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr; /* Bikin 3 kolom */
-  gap: 1rem 0.5rem; /* Jarak antar item */
+  display: flex;
+  flex-direction: column; /* Bikin 1 kolom (turun ke bawah) */
+  gap: 1rem; /* Jarak antar item */
 `;
+// --- ⬆️ SELESAI ⬆️ ---
 
 const TrendItem = styled(Link)`
   display: block;
@@ -32,6 +32,7 @@ const TrendItem = styled(Link)`
   color: ${({ theme }) => theme.colors.textPrimary};
   padding: 0.25rem 0.5rem;
   border-radius: 4px;
+  /* (Hapus 'text-overflow' agar tidak terpotong) */
 
   &:hover {
     background-color: rgba(0, 0, 0, 0.05);
@@ -41,10 +42,7 @@ const TrendItem = styled(Link)`
 const Tag = styled.span`
   font-weight: 700;
   display: block;
-  /* (Opsional) Biar gak kepanjangan */
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 `;
 
 const Count = styled.span`
@@ -53,7 +51,6 @@ const Count = styled.span`
 `;
 
 // --- HELPER FUNCTION ---
-// Bikin fungsi buat format 1200 -> 1.2K atau 1200000 -> 1.2M
 function formatCount(num) {
   if (num >= 1000000) {
     return (num / 1000000).toFixed(1) + 'M';
@@ -72,8 +69,8 @@ const TrendingBox = () => {
   useEffect(() => {
     const fetchTrends = async () => {
       setLoading(true);
-      // Panggil 9 tren, bukan 5
-      const data = await getTrendingTags(9); //
+      // Kita ambil 5 tren teratas saja
+      const data = await getTrendingTags(5);
       setTrends(data);
       setLoading(false);
     };
@@ -96,7 +93,6 @@ const TrendingBox = () => {
         {trends.map((trend) => (
           <TrendItem to={`/kategori/${trend.category_name}`} key={trend.category_id}>
             <Tag>#{trend.category_name}</Tag>
-            {/* Pake helper function di sini */}
             <Count>{formatCount(trend.post_count)}</Count> 
           </TrendItem>
         ))}
