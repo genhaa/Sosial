@@ -61,6 +61,22 @@ const Button = styled.button`
 `;
 
 /**
+ * Helper function untuk mencari tagar dari teks.
+ * Cth: "Halo #pagi #dunia" akan menjadi ["pagi", "dunia"]
+ */
+const extractHashtags = (text) => {
+  const regex = /#(\w+)/g; // Cari #diikuti_kata
+  let matches;
+  const tags = new Set(); // Pakai 'Set' agar tag unik (tidak dobel)
+  
+  while ((matches = regex.exec(text)) !== null) {
+    // Ambil grup ke-1 (kata tanpa #)
+    tags.add(matches[1]); 
+  }
+  return Array.from(tags); // Kembalikan sebagai array
+};
+
+/**
  * Komponen ini butuh 'postId' untuk tahu komen ini milik post mana,
  * dan 'onCommentCreated' untuk memberi tahu parent (PostDetail)
  * agar me-refresh daftar komentarnya.
@@ -71,16 +87,16 @@ const CreateCommentBox = ({ postId, onCommentCreated }) => {
 
   const handleSubmit = async () => {
     if (content.trim() === '') return;
-
-    // newCommentData adalah { id: "...", created_at: "..." }
-    const newCommentData = await createComment(postId, content); 
     
+    const categoryNames = extractHashtags(content);
+    
+    const newCommentData = await createComment(postId, content, categoryNames); 
+
     if (newCommentData) { 
-      const originalContent = content; // Simpan teks sebelum dikosongkan
-      setContent(''); // Kosongkan input
+      const originalContent = content;
+      setContent('');
       
       if (onCommentCreated) {
-        // Kirim data baru DAN teks asli ke parent
         onCommentCreated(newCommentData, originalContent); 
       }
     } else {
