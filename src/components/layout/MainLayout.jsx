@@ -2,9 +2,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Outlet, Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '../../context/AuthContext'; // Panggil Satpam
-import { logoutUser } from '../../services/auth'; //
-import LogoImage from '../../assets/DS.png'; // <-- 1. IMPORT (Udah bener)
+import { useAuth } from '../../context/AuthContext'; 
+import { logoutUser } from '../../services/auth'; 
+import LogoImage from '../../assets/DS.png'; 
 
 // --- Styled Components ---
 const AppWrapper = styled.div`
@@ -23,7 +23,7 @@ const Sidebar = styled.nav`
   align-self: flex-start;
 `;
 
-// 2. KITA BIKIN KOMPONEN GAMBAR BARU
+//KOMPONEN GAMBAR BARU
 const LogoImg = styled.img`
   width: 80px; /* Atur sizenya */
   margin-bottom: 2rem;
@@ -77,11 +77,9 @@ const MainLayout = () => {
 
   return (
     <AppWrapper>
-      {/* --- Sidebar Merah --- */}
       <Sidebar>
-        {/* 3. GANTI <Logo>DS</Logo> PAKE INI */}
         <LogoImg src={LogoImage} alt="DiskuShare Logo" />
-        
+  
         <NavLink to="/home">Beranda</NavLink>
         <NavLink to="/profil/me">Profil</NavLink>
         <NavLink to="/populer">Populer</NavLink>
@@ -91,7 +89,6 @@ const MainLayout = () => {
       
       {/* --- Konten Halaman --- */}
       <MainContent>
-        {/* Tombol di pojok kanan atas */}
         {user ? (
           <LoginButton as="button" onClick={handleLogout}>
             Keluar
