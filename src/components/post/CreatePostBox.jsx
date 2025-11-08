@@ -1,9 +1,10 @@
 // src/components/post/CreatePostBox.jsx
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { useAuth } from '../../context/AuthContext';
-import { createPost } from '../../services/posts'; 
+import { useAuth } from '../../context/AuthContext.jsx';
+import { createPost } from '../../services/posts.js'; 
 
+// ... Semua 'styled.' ...
 const CreatePostWrapper = styled.div`
   background: ${({ theme }) => theme.colors.card};
   border: 1px solid #eee;
@@ -54,7 +55,6 @@ const PostButton = styled.button`
 
 /**
  * Helper function untuk mencari tagar dari teks.
- * Cth: "Halo #pagi #dunia" akan menjadi ["pagi", "dunia"]
  */
 const extractHashtags = (text) => {
   const regex = /#(\w+)/g; // Cari #diikuti_kata
@@ -75,11 +75,11 @@ const CreatePostBox = ({ onPostCreated }) => {
   const handleCreatePost = async () => {
     if (newPostContent.trim() === '') return;
 
-    // 1. Ekstrak tagar dari teks
+    // Ekstrak tagar dari teks
     const categoryNames = extractHashtags(newPostContent); 
     // Jika teksnya "#eskrim", categoryNames akan menjadi ["eskrim"]
     
-    // 2. Panggil service createPost dengan tagar yang ditemukan
+    // Panggil service createPost dengan tagar yang ditemukan
     const newPostData = await createPost(newPostContent, categoryNames); 
     
     if (newPostData) {
@@ -95,7 +95,7 @@ const CreatePostBox = ({ onPostCreated }) => {
       <Avatar src={profile?.avatar_url || 'default-avatar-url.png'} /> 
       <PostInputArea>
         <PostTextarea
-          placeholder="Apa yang ada di pikiranmu, G?"
+          placeholder="Apa yang ada di pikiranmu?"
           value={newPostContent}
           onChange={(e) => setNewPostContent(e.target.value)}
         />
