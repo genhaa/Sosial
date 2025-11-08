@@ -5,7 +5,7 @@ import { useAuth } from '../context/AuthContext.jsx';
 import { updateProfile, uploadAvatar, uploadBanner } from '../services/auth.js';
 import { useNavigate } from 'react-router-dom';
 
-// --- (Styling biarkan apa adanya) ---
+// --- Styling  ---
 const PageWrapper = styled.div`
   max-width: 700px;
 `;
@@ -53,7 +53,6 @@ const Button = styled.button`
   margin-top: 2rem;
   &:hover { opacity: 0.9; }
 `;
-// --- (Styling selesai) ---
 
 
 // --- Komponen Utama ---
@@ -82,11 +81,11 @@ const Pengaturan = () => {
         bio: bio
       };
 
-      // 1. Update text (bio, name)
+      //  Update text (bio, name)
       // (Fungsi ini akan 'throw' error jika gagal)
       await updateProfile({ name, bio });
       
-      // 2. Upload avatar JIKA ada file baru
+      // Upload avatar JIKA ada file baru
       if (avatarFile) {
         // (Fungsi ini akan 'throw' error jika gagal)
         const newAvatarUrl = await uploadAvatar(avatarFile);
@@ -95,7 +94,7 @@ const Pengaturan = () => {
         }
       }
       
-      // 3. Upload banner JIKA ada file baru
+      // Upload banner JIKA ada file baru
       if (bannerFile) {
         // (Fungsi ini akan 'throw' error jika gagal)
         const newBannerUrl = await uploadBanner(bannerFile);
@@ -104,7 +103,7 @@ const Pengaturan = () => {
         }
       }
       
-      // 4. Update context secara lokal
+      // Update context secara lokal
       updateLocalProfile(newData);
       
       // 5. Beri notifikasi SUKSES
@@ -113,15 +112,13 @@ const Pengaturan = () => {
       navigate(`/profil/${profile.handle}`); // Kembali ke profil
       
     } catch (err) {
-      // --- ⬇️ INI PERUBAHAN UTAMANYA ⬇️ ---
-      // 6. Tangkap error dan TAMPILKAN PESAN ERROR ASLINYA
+      // Tangkap error dan TAMPILKAN PESAN ERROR ASLINYA
       console.error("Gagal total di Pengaturan.jsx:", err);
       alert('Gagal memperbarui profil. Pesan: ' + err.message);
-      // --- ⬆️ SELESAI PERUBAHAN ⬆️ ---
     }
   };
   
-  // (Render JSX biarkan apa adanya)
+  // Render JSX 
   return (
     <PageWrapper>
       <PageHeader>Edit Profil</PageHeader>
@@ -162,5 +159,6 @@ const Pengaturan = () => {
     </PageWrapper>
   );
 };
+
 
 export default Pengaturan;
