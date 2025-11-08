@@ -46,7 +46,13 @@ const PostDetail = () => {
       if (postData) {
         setPost(postData);
         const commentData = await getCommentsForPost(postId);
-        setComments(commentData);
+        
+        const mappedComments = commentData.map(comment => ({
+          ...comment,
+          users: comment.user || comment.users 
+        }));
+        
+        setComments(mappedComments); 
       }
       setLoading(false);
     };
