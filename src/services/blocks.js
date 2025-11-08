@@ -1,10 +1,5 @@
-// blocks.js
 import { supabase } from "./supabase.js";
 
-/**
- * Memblokir seorang pengguna.
- * @param {string} userIdToBlock - ID pengguna yang akan diblokir.
- */
 export async function blockUser(userIdToBlock) {
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) {
@@ -12,7 +7,6 @@ export async function blockUser(userIdToBlock) {
     return;
   }
 
-  // Mencegah blokir diri sendiri
   if (user.id === userIdToBlock) {
     console.warn("Tidak bisa memblokir diri sendiri.");
     return;
@@ -22,8 +16,8 @@ export async function blockUser(userIdToBlock) {
     .from("blocks")
     .insert([
       { 
-        blocker_id: user.id, // ID saya
-        blocked_id: userIdToBlock // ID orang yang saya blokir
+        blocker_id: user.id, 
+        blocked_id: userIdToBlock 
       }
     ]);
 
@@ -35,10 +29,6 @@ export async function blockUser(userIdToBlock) {
   return data;
 }
 
-/**
- * Membatalkan blokir seorang pengguna.
- * @param {string} userIdToUnblock - ID pengguna yang akan dibatal-blokir.
- */
 export async function unblockUser(userIdToUnblock) {
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return;
@@ -46,7 +36,7 @@ export async function unblockUser(userIdToUnblock) {
   const { data, error } = await supabase
     .from("blocks")
     .delete()
-    .eq("blocker_id", user.id) // RLS juga akan memeriksa ini
+    .eq("blocker_id", user.id)
     .eq("blocked_id", userIdToUnblock);
 
   if (error) {
