@@ -145,6 +145,10 @@ const CommentCard = ({ comment, onDeleteSuccess }) => {
         <Timestamp>{formatTimestamp(created_at)}</Timestamp>
       </CardHeader>
 
+      <CardBody>
+        {content}
+      </CardBody>
+      
       <CardFooter>
         <FooterButton liked={isLiked} onClick={handleLikeClick}>
           <span>❤️</span>
