@@ -37,7 +37,7 @@ Kalau kamu mau coba jalanin proyek ini di komputermu, ikuti langkah-langkah ini:
 
 1.  **Clone repository**
     ```bash
-    git clone [https://github.com/14-115-Grace/Sosial.git](https://github.com/14-115-Grace/Sosial.git)
+    git clone [https://github.com/genhaa/Sosial.git](https://github.com/genhaa/Sosial.git)
     ```
 
 2.  **Masuk ke direktori proyek**
