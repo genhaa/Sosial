@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import { useAuth } from '../../context/AuthContext';
 import { createPost } from '../../services/posts'; 
 
-// ... (Semua 'styled.' components biarkan apa adanya) ...
 const CreatePostWrapper = styled.div`
   background: ${({ theme }) => theme.colors.card};
   border: 1px solid #eee;
@@ -52,8 +51,6 @@ const PostButton = styled.button`
   opacity: ${props => props.disabled ? 0.6 : 1};
 `;
 // ---
-
-// --- ⬇️ INI ADALAH PERBAIKANNYA ⬇️ ---
 
 /**
  * Helper function untuk mencari tagar dari teks.
