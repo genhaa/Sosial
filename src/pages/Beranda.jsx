@@ -1,11 +1,11 @@
 // src/pages/Beranda.jsx
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { useAuth } from '../context/AuthContext';
-import { getPosts } from '../services/posts';
-import PostCard from '../components/post/PostCard';
-import Loading from '../components/common/Loading';
-import CreatePostBox from '../components/post/CreatePostBox'; // <-- 1. IMPOR
+import { useAuth } from '../context/AuthContext.jsx';
+import { getPosts } from '../services/posts.js';
+import PostCard from '../components/post/PostCard.jsx';
+import Loading from '../components/common/Loading.jsx';
+import CreatePostBox from '../components/post/CreatePostBox.jsx'; 
 
 // --- Styled Components ---
 const BerandaWrapper = styled.div`
@@ -25,7 +25,6 @@ const SubHeader = styled.h2`
   border-top: 1px solid #eee;
   padding-top: 1.5rem;
 `;
-// ... (Hapus style CreatePostBox, Avatar, dll. dari sini) ...
 
 // --- Main Component ---
 const Beranda = () => {
@@ -57,16 +56,14 @@ const Beranda = () => {
 
   return (
     <BerandaWrapper>
-      {/* --- Sapaan (sesuai Beranda.png) --- */}
       <PageHeader>Halo, {profile?.name || 'Pengguna'}!</PageHeader>
       <p style={{marginTop: "-1.5rem", marginBottom: "2rem", fontSize: "1.1rem"}}>
         Saatnya memulai diskusi baru dan berbagi wawasan!
       </p>
 
-      {/* --- 2. PANGGIL KOMPONEN BARU --- */}
+      {/* --- PANGGIL KOMPONEN BARU --- */}
       <CreatePostBox onPostCreated={handlePostCreated} />
 
-      {/* --- Timeline (sesuai Beranda.png) --- */}
       <SubHeader>Linimasa Terbaru</SubHeader>
       {loading ? (
         <Loading />
