@@ -3,7 +3,7 @@ import React from 'react';
 import { createBrowserRouter, RouterProvider, Navigate, Outlet } from 'react-router-dom';
 import { useAuth } from './context/AuthContext.jsx';
 
-// --- Impor Layout & Halaman ---
+// Impor Layout & Halaman 
 import MainLayout from './components/layout/MainLayout.jsx';
 import HalamanTentang from './pages/HalamanTentang.jsx';
 import Beranda from './pages/Beranda.jsx';
@@ -16,7 +16,7 @@ import Register from './pages/Register.jsx';
 import NotFound from './pages/NotFound.jsx';
 import Pengaturan from './pages/Pengaturan.jsx';
 
-// --- Pelindung Rute Private ---
+// Pelindung Rute Private
 // Komponen ini "jagain" halaman yang cuma boleh diliat kalo udah login
 const ProtectedRoute = ({ children }) => {
   const { user } = useAuth(); // Cek status login
@@ -24,26 +24,27 @@ const ProtectedRoute = ({ children }) => {
     // Kalo belom login, tendang ke /login
     return <Navigate to="/login" replace />;
   }
-  return children; 
+  return children; // Kalo udah, tampilin halamannya
 };
 
-// --- Komponen Shortcut Buat /profil/me ---
+// Komponen Shortcut Buat /profil/me 
+// Ini ngurusin link "Profil" di sidebar
 const MyProfileRedirect = () => {
-  //  BACA 'profile' DARI CONTEXT
+  // SEKARANG KITA BACA 'profile' DARI CONTEXT
   const { profile } = useAuth(); 
   
   if (!profile) return <Navigate to="/login" replace />;
   
   // Ambil 'handle' dari OBJEK PROFIL, bukan user_metadata
-  const userIdentifier = profile.handle; 
+  const userIdentifier = profile.handle; // <-- INI PERBAIKANNYA
   
   return <Navigate to={`/profil/${userIdentifier}`} replace />;
 };
 
-// --- Konfigurasi Router ---
+// Konfigurasi Router
 const router = createBrowserRouter([
   {
-    // Rute yang pake MainLayout 
+    // Rute yang pake MainLayout (Sidebar merah)
     path: '/',
     element: <MainLayout />, // Layout utama jadi 'wrapper'
     children: [
@@ -69,7 +70,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'kategori', // Rute /kategori
-        element: <Kategori />, // Ini public
+        element: <Kategori />, // Ini public, gak perlu <ProtectedRoute>
       },
       {
         path: 'profil/me', // Rute 'shortcut' dari sidebar
@@ -80,7 +81,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: 'profil/:username', // Rute dinamis
+        path: 'profil/:username', // Rute dinamis (cth: /profil/adit_sopo)
         element: (
           <ProtectedRoute> {/* Dijagain */}
             <Profil />
@@ -88,7 +89,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: 'post/:postId', 
+        path: 'post/:postId', // <-- TAMBAHKAN BLOK INI
         element: <ProtectedRoute><PostDetail /></ProtectedRoute>,
       },
       {
