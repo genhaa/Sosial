@@ -1,28 +1,28 @@
 // src/services/auth.js
 import { supabase } from "./supabase.js";
 
-// Fungsi registerUser dan loginUser biarkan apa adanya
+// Fungsi registerUser dan loginUser 
 export async function registerUser(fullName, email, password, handle) {
-  // Mendaftarkan user baru ke Supabase Auth
+  
   const { data, error } = await supabase.auth.signUp({
     email: email,
     password: password,
-    options: { data: { name: fullName } },
+    options: { 
+      data: { 
+        name: fullName,
+        handle: handle 
+      } 
+    },
   });
+
   if (error) {
-    alert("❌ Gagal daftar: " + error.message);
+    alert("❌ Gagal daftar (Auth): " + error.message);
     return;
   }
 
   alert("✅ Pendaftaran berhasil! Cek email kamu untuk verifikasi.");
-
-  // Simpan data user tambahan ke tabel `users`
-  if (data.user) {
-    await supabase.from("users").insert([
-      { id: data.user.id, name: fullName, email: email, handle: handle },
-    ]);
-  }
 }
+
 
 export async function loginUser(email, password) {
   // Melakukan login menggunakan email & password
