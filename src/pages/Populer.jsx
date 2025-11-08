@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { getPosts } from '../services/posts'; //
 import PostCard from '../components/post/PostCard';
 import Loading from '../components/common/Loading';
-import RightSidebar from '../components/layout/RightSidebar'; // <-- IMPOR GUTTER
+import RightSidebar from '../components/layout/RightSidebar'; 
 
 // --- Styled Components ---
 const PageWrapper = styled.div`
@@ -26,12 +26,9 @@ const Populer = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // TODO: Kita perlu 'getPopularPosts()'
-  // Untuk sekarang, kita pake getPosts() aja
   useEffect(() => {
     const fetchPosts = async () => {
       setLoading(true);
-      // Nanti ganti ini pake service yg bener
       const data = await getPosts(1, 20); 
       setPosts(data);
       setLoading(false);
