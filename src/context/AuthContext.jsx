@@ -82,8 +82,8 @@ export const AuthProvider = ({ children }) => {
 
 
   return (
-    <AuthContext.Provider value={value}>    // kirim semua data dan fungsi ke seluruh komponen
-      {!loading && children}                // tampilkan konten hanya setelah loading selesai
+    <AuthContext.Provider value={value}>    
+      {!loading && children}                 
     </AuthContext.Provider>
   );
 };
