@@ -128,7 +128,7 @@ const CommentCard = ({ comment, onDeleteSuccess }) => {
     }
   };
 
-  return (
+return (
     <Card>
       <CardHeader>
         <Avatar 
@@ -148,14 +148,13 @@ const CommentCard = ({ comment, onDeleteSuccess }) => {
       <CardBody>
         {content}
       </CardBody>
-      
+
       <CardFooter>
         <FooterButton liked={isLiked} onClick={handleLikeClick}>
           <span>❤️</span>
           <span>{currentLikes}</span>
         </FooterButton>
         
-        {/* --- PASTIKAN TOMBOL INI AKTIF --- */}
         {author?.id === user?.id && (
           <FooterButton 
             style={{color: '#888', marginLeft: 'auto'}}
@@ -167,6 +166,5 @@ const CommentCard = ({ comment, onDeleteSuccess }) => {
       </CardFooter>
     </Card>
   );
-};
 
 export default CommentCard;
