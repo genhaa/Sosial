@@ -2,14 +2,12 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../../context/AuthContext';
-import { likePost, unlikePost } from '../../services/likes'; //
-import { deletePost } from '../../services/posts'; //
+import { useAuth } from '../../context/AuthContext.jsx'; 
+import { likePost, unlikePost } from '../../services/likes.js'; 
+import { deletePost } from '../../services/posts.js';
 
 // --- Helper Functions ---
 function formatTimestamp(timestamp) {
-  // Bikin logic buat format "5m", "1h", "3d"
-  // Untuk sekarang, kita buat simpel:
   const date = new Date(timestamp);
   return date.toLocaleDateString('id-ID', {
     day: 'numeric',
@@ -17,7 +15,7 @@ function formatTimestamp(timestamp) {
   });
 }
 
-// --- Styled Components ---
+// --- Styled Components  ---
 const Card = styled.div`
   background: ${({ theme }) => theme.colors.card};
   border: 1px solid #eee;
@@ -31,12 +29,10 @@ const Card = styled.div`
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   }
 `;
-
 const CardHeader = styled.div`
   display: flex;
   align-items: flex-start;
 `;
-
 const Avatar = styled.img`
   width: 45px;
   height: 45px;
@@ -44,36 +40,30 @@ const Avatar = styled.img`
   background: #eee;
   margin-right: 1rem;
 `;
-
 const AuthorInfo = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
 `;
-
 const AuthorName = styled.span`
   font-weight: 700;
   color: ${({ theme }) => theme.colors.textPrimary};
 `;
-
 const AuthorHandle = styled.span`
   color: #888;
   font-size: 0.9rem;
 `;
-
 const Timestamp = styled.span`
   color: #888;
   font-size: 0.9rem;
-  margin-left: auto; // Pindahin ke kanan
+  margin-left: auto;
 `;
-
 const CardBody = styled.div`
   margin-top: 1rem;
   font-size: 1rem;
   line-height: 1.6;
-  white-space: pre-wrap; // Biar newline tetep keliatan
+  white-space: pre-wrap;
 `;
-
 const CardFooter = styled.div`
   display: flex;
   align-items: center;
@@ -81,53 +71,42 @@ const CardFooter = styled.div`
   margin-top: 1.5rem;
   color: #555;
 `;
-
 const FooterButton = styled.div`
   display: flex;
   align-items: center;
   gap: 0.5rem;
   cursor: pointer;
   font-size: 0.9rem;
-  
-  /* Ganti warna kalo di-like */
   color: ${props => props.liked ? props.theme.colors.primary : '#555'};
   font-weight: ${props => props.liked ? '700' : '400'};
-
-  &:hover {
-    opacity: 0.7;
-  }
+  &:hover { opacity: 0.7; }
 `;
+// --- Styled Components Selesai ---
 
-// --- Main Component ---
 const PostCard = ({ post, onDeleteSuccess }) => {
   const { user } = useAuth();
   const navigate = useNavigate();
 
-  // Struktur data dari getPosts()
   const {
     id: postId,
     content,
     created_at,
-    users: author, // 'users' kita alias jadi 'author'
+    users: author,
     like_count,
     comment_count,
   } = post;
 
-  // State lokal buat instant feedback
-  // TODO: Kita butuh info 'is_liked_by_me' dari BE,
-  // untuk sekarang kita anggap false
   const [isLiked, setIsLiked] = useState(post.is_liked_by_me);
   const [currentLikes, setCurrentLikes] = useState(like_count);
 
   const handleLikeClick = async (e) => {
-    e.stopPropagation(); // Biar klik-nya gak ke card
-    
+    e.stopPropagation(); 
     if (isLiked) {
-      await unlikePost(postId); //
+      await unlikePost(postId);
       setCurrentLikes(prev => prev - 1);
       setIsLiked(false);
     } else {
-      await likePost(postId); //
+      await likePost(postId);
       setCurrentLikes(prev => prev + 1);
       setIsLiked(true);
     }
@@ -135,21 +114,25 @@ const PostCard = ({ post, onDeleteSuccess }) => {
 
   const handleCommentClick = (e) => {
     e.stopPropagation();
-    // Arahin ke detail post, tapi fokus ke input komen
     navigate(`/post/${postId}?focus_comment=true`);
   };
 
   const navigateToDetail = () => {
-    // Navigasi ke halaman detail
     navigate(`/post/${postId}`);
+  };
+  
+  // --- TAMBAHAN FUNGSI NAVIGASI ---
+  const navigateToProfile = (e) => {
+    e.stopPropagation(); // Mencegah klik agar tidak lari ke 'navigateToDetail'
+    navigate(`/profil/${author.handle}`);
   };
 
   const handleDeleteClick = async (e) => {
     e.stopPropagation();
     if (window.confirm('Yakin mau hapus post ini, G?')) {
-      await deletePost(postId); //
+      await deletePost(postId);
       if (onDeleteSuccess) {
-        onDeleteSuccess(postId); // Kirim sinyal ke Beranda.jsx
+        onDeleteSuccess(postId);
       }
     }
   };
@@ -157,9 +140,15 @@ const PostCard = ({ post, onDeleteSuccess }) => {
   return (
     <Card onClick={navigateToDetail}>
       <CardHeader>
-        <Avatar src={author?.avatar_url || 'default-avatar-url.png'} alt="avatar" />
+        <Avatar 
+          src={author?.avatar_url || 'default-avatar-url.png'} 
+          alt="avatar" 
+          onClick={navigateToProfile} 
+        />
         <AuthorInfo>
-          <AuthorName>{author?.name || 'User'}</AuthorName>
+          <AuthorName onClick={navigateToProfile}>
+            {author?.name || 'User'}
+          </AuthorName>
           <AuthorHandle>@{author?.handle || 'userhandle'}</AuthorHandle>
         </AuthorInfo>
         <Timestamp>{formatTimestamp(created_at)}</Timestamp>
@@ -177,15 +166,11 @@ const PostCard = ({ post, onDeleteSuccess }) => {
           <span>{currentLikes}</span>
         </FooterButton>
         
-        {/* Tombol Hapus & Edit cuma muncul kalo itu post kita */}
         {author?.id === user?.id && (
           <>
             <FooterButton onClick={handleDeleteClick} style={{color: '#888', marginLeft: 'auto'}}>
               <span>🗑️ Hapus</span>
             </FooterButton>
-            {/* <FooterButton onClick={...} style={{color: '#888'}}>
-              <span>✏️ Edit</span>
-            </FooterButton> */}
           </>
         )}
       </CardFooter>
