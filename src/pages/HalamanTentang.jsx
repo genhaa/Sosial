@@ -1,4 +1,3 @@
-// src/pages/HalamanTentang.jsx
 import React from 'react';
 import styled from 'styled-components';
 import teamImage from '../assets/team-image.jpg'; 
