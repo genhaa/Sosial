@@ -1,4 +1,3 @@
-// src/components/layout/MainLayout.jsx
 import React from 'react';
 import styled from 'styled-components';
 import { Outlet, Link, useNavigate } from 'react-router-dom';
