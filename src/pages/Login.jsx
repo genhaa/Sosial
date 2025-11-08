@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { useNavigate, Link } from 'react-router-dom';
 import { loginUser } from '../services/auth.js'; //
 
-// --- Styled Components (NYAMAIN Login.png) ---
+// --- Styled Components  ---
 
 const PageWrapper = styled.div`
   display: flex;
@@ -101,7 +101,7 @@ const Login = () => {
     
     // AuthContext bakal otomatis deteksi login
     // dan ProtectedRoute bakal ngizinin kita masuk
-    navigate('/home'); // Arahin ke /home (timeline)
+    navigate('/home'); 
   };
 
   return (
