@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { useAuth } from '../../context/AuthContext';
 import { createComment } from '../../services/comments'; // <-- Panggil service komen
 
-// Kita bisa pakai styling yang mirip dengan CreatePostBox
+// styling yang mirip dengan CreatePostBox
 const CreateCommentWrapper = styled.div`
   background: ${({ theme }) => theme.colors.card};
   border: 1px solid #eee;
@@ -28,7 +28,7 @@ const InputArea = styled.div`
   flex-direction: column;
 `;
 
-// Buat inputnya sedikit beda biar jelas
+// Buat inputnya sedikit beda
 const Textarea = styled.textarea`
   width: 100%;
   border: 1px solid #ddd; 
