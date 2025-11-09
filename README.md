@@ -86,5 +86,3 @@ Kalau kamu mau coba jalanin proyek ini di komputermu, ikuti langkah-langkah ini:
   * Email : juliani.123140029@student.itera.ac.id
 * **Gohan**
   * Email : gohan.123140160@student.itera.ac.id
-* **Nikson**
-  * Email : nikson.123140051@student.itera.ac.id
